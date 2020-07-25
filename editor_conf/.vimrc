@@ -10,6 +10,17 @@ set number
 set hlsearch
 set so=10
 
+" ----- Search settings -------
+set ignorecase
+" Change to capital awareness mode when type capital letter
+set smartcase
+" Meet the end, searc will restart from top 
+set wrapscan
+" key binding , + space for nohl in normal mode
+nmap <silent> ,<space> :nohl<CR>
+" key binding * for search selected text in visual mode
+vmap * y/\V<C-r>=escape(@",'/\')<CR><CR>
+
 set background=dark
 
 if (has("autocmd") && !has("gui_running"))

@@ -19,7 +19,7 @@ set wrapscan
 " key binding , + space for nohl in normal mode
 nmap <silent> ,<space> :nohl<CR>
 " key binding * for search selected text in visual mode
-vmap * y/\V<C-r>=escape(@",'/\')<CR><CR>
+vmap * y/\V<C-r>"<CR><CR>
 
 set background=dark
 

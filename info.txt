@@ -1,0 +1,30 @@
+# remove wrongly commit history make gitignore work
+git rm -r --cached . && git add . && git commit -am "Remove ignored files"
+
+# remove wrongly commited large files in .git (e.g. remove *.pth files)
+git filter-branch --index-filter 'git rm --cached --ignore-unmatch *.pth' -- --all
+rm -Rf .git/refs/original
+rm -Rf .git/logs/
+git gc --aggressive --prune=now
+
+
+# clear cache last access 1 day ago
+find ~/.cache/ -type f -atime +1 -delete
+
+# can change condor info using condor_qedit for a hold job
+
+e.g. increase request memory
+condor_qedit 123 'RequestMemory=4200'
+condor_release
+
+# other new commands supported for condor 8.9
+condor_history --startd --name xyzzy := now shows a (potentially long) list of jobs which ran on machine xyzzy.
+
+condor_userprio -getreslist deknuydt@esat.kuleuven.be := show what resources, i.e. slots are currently in use by the specified user. Notice that this is a separate user for nice and non-nice. (will change in the future)
+
+condor_watch_q := is the new and much more efficient way to what many people did with watch condor_q, which can be heavy on the submit node.
+# I redirect condor_watch_q to cdq
+
+Up to now, you could specify input and output files as plain files or as ftp or http(s) links. Now you can additionally specify input and output data from box, gdrive, dav(s), onedrive and s3. In certain cases, this is preferable over NFS (most often not though).
+
+There is now a dataflow type of job, which works as make: it only runs when the output does not exist or is older than the input. 

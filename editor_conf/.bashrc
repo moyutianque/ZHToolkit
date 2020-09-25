@@ -20,6 +20,13 @@ alias cds='condor_submit'
 alias mystat="condor_status -constraint 'RemoteUser == \"zwang@esat.kuleuven.be\" || RemoteUser == \"nice-user.zwang@esat.kuleuven.be\"'"
 alias pycharm='bash /users/visics/zwang/Tools/pycharm-community-2020.1.2/bin/pycharm.sh'
 alias tnew='tmux new -s'
+
+# Blender path
+#export BLENDER=/users/visics/zwang/ExternelLib/Blender/blender-2.90.1-linux64/2.90
+#alias blender='/users/visics/zwang/ExternelLib/Blender/blender-2.90.1-linux64/blender'
+export BLENDER=/users/visics/zwang/ExternelLib/Blender/blender-2.79b-linux64/2.79
+alias blender='/users/visics/zwang/ExternelLib/Blender/blender-2.79b-linux64/blender'
+
 ####################
 
 export PATH=/usr/local/cuda-10.2/bin${PATH:+:${PATH}}$
@@ -32,6 +39,8 @@ export PATH=/users/visics/zwang/Tools/gitkraken:$PATH
 export PATH=/users/visics/zwang/ExternelLib/Jacinle/bin:$PATH
 # add customized lib
 export PYTHONPATH=$PYTHONPATH:/users/visics/zwang/Documents/workplace/ZHToolkit
+export PYTHONPATH=$PYTHONPATH:/users/visics/zwang/ExternelLib/Jacinle
+
 
 export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 export CUDA_HOME=/usr/local/cuda-10.2 
@@ -55,3 +64,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+export FZF_DEFAULT_OPTS='--height 40% --border --layout=reverse'
+
+# add explicity PATH because of strange error occured when desktop restart
+export PATH=/users/visics/zwang/.fzf/bin:$PATH
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# redirect picture file
+export PICTURES=/users/visics/zwang/Pictures

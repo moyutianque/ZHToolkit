@@ -11,35 +11,61 @@
 """
 import json
 
-PREFIXES = ['', '   ', '      ', '         ', '            ']
-def print_json_struct(v, depth=0, max_depth=5, prefix_list:list=PREFIXES):
+display_element_prefix_middle = '├──'
+display_element_prefix_last = '└──'
+display_parent_prefix_middle = '    '
+display_parent_prefix_last = '│   '
+
+def get_dict_struct(data):
+    # the data may contain data type other than default types, like tensor or ndarray
+    raise NotImplementedError
+
+def get_json_struct(data, depth=0, max_depth=20,
+                    head_name='this.json', tree_str='', prefix=''):
+    # can also be used as dict structure discovery, if has large tensor or ndarray, use a modified version
+    """ example structure tree
+        file.json
+        └──  DICT
+            ├── Key1
+            │   └── value1
+            ├── Key2
+            │   └── LIST (1000 elements)
+            │       └── DICT
+            │           ├── Key1
+            │           │   └── value1
+            │           ├── Key2
+            │           │   └── value2
+    """
+    if depth==0:
+        tree_str += f'{head_name}\n'
+
     if depth>=max_depth:
         return
-    
-    if isinstance(v, dict):
-        print('{}Dict with {} keys: \n{}{}\n{}^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'.format(
-            prefix_list[depth], len(v.keys()), prefix_list[depth], 
-            list(v.keys()), prefix_list[depth]) 
-        )
-        for k in v.keys():
-            print('{}-- {}:'.format(
-                prefix_list[depth], k )
-            )
-            print_json_struct(v[k], depth+1, max_depth, prefix_list)
-            print('{}=========================================================='.format(
-                prefix_list[depth])
-            )
-            
-    elif isinstance(v, (tuple, list)):
-        if len(v)!=0:
-            print('{}List with {} elements of type {}:\n{}e.g.'.format(
-                prefix_list[depth], len(v), type(v[0]).__name__,prefix_list[depth])
-            )
-            
-            print_json_struct(v[0], depth, max_depth, prefix_list)
-        else:
-            print('{}[Empty warning]List with {} elements: \n    '.format(
-                prefix_list[depth], len(v))
-            )
+
+    if isinstance(data, dict):
+        tree_str += (prefix + '└── DICT\n')
+        for i, k in enumerate(list(data.keys())):
+            if i < (len(data.keys())-1):
+                tree_str += (prefix + f'    ├── {k}\n')
+                tree_str = get_json_struct(data[k], depth+1,
+                            tree_str=tree_str, prefix=(prefix+'    │   '))
+            else:
+                tree_str += (prefix + f'    └── {k}\n')
+                tree_str = get_json_struct(data[k], depth+1,
+                            tree_str=tree_str, prefix=(prefix+'        '))
+
+    elif isinstance(data, tuple):
+        tree_str += (prefix + f'└── TUPLE ({len(data)} elements)\n')
+        if len(data)!=0:
+            tree_str=get_json_struct(
+                data[0], depth+1, tree_str=tree_str, prefix=(prefix + '    '))
+
+    elif isinstance(data, list):
+        tree_str += (prefix + f'└── LIST ({len(data)} elements)\n')
+        if len(data)!=0:
+            tree_str=get_json_struct(
+                data[0], depth+1, tree_str=tree_str, prefix=(prefix + '    '))
     else:
-        print('{}Value({}): e.g. {}'.format(prefix_list[depth], type(v).__name__, v))
+        tree_str += (prefix + f'└── {data} {type(data)}\n')
+
+    return tree_str

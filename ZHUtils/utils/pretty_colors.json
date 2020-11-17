@@ -1,5 +1,7 @@
 {
-  "blue and yellow": ["#3289c9", "#fbd100"],
+  "_comment": "https://www.schemecolor.com/tag/google",
+  
+  "blue and yellow": ["#3d6ec9", "#ffd04b"],
   "dark green and dark red": ["#00A13B", "#8B0000"],
-  "light green and light red": ["#38C25D", "#FF5B4E"],
+  "light green and light red": ["#0dab62", "#e04a3f"],
 }

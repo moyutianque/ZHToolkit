@@ -51,11 +51,11 @@ def get_json_struct(data, depth=0, max_depth=20,
           
         for i, k in enumerate(list(data.keys())):
             if i < (len(data.keys())-1):
-                tree_str += (prefix + f'    ├── {k}\n')
+                tree_str += (prefix + f'    ├── Key: {k}\n')
                 tree_str = get_json_struct(data[k], depth+1,
                             tree_str=tree_str, prefix=(prefix+'    │   '))
             else:
-                tree_str += (prefix + f'    └── {k}\n')
+                tree_str += (prefix + f'    └── Key: {k}\n')
                 tree_str = get_json_struct(data[k], depth+1,
                             tree_str=tree_str, prefix=(prefix+'        '))
 

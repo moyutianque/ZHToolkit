@@ -44,6 +44,11 @@ def get_json_struct(data, depth=0, max_depth=20,
 
     if isinstance(data, dict):
         tree_str += (prefix + '└── DICT\n')
+        
+        if len(data.keys()) > 100:
+          tmp_key = list(data.keys())[0]
+          data = {tmp_key: data[tmp_key]}
+          
         for i, k in enumerate(list(data.keys())):
             if i < (len(data.keys())-1):
                 tree_str += (prefix + f'    ├── {k}\n')

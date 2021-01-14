@@ -43,11 +43,14 @@ def get_json_struct(data, depth=0, max_depth=20,
         return
 
     if isinstance(data, dict):
-        tree_str += (prefix + '└── DICT\n')
         
+        extra_info=''
         if len(data.keys()) > 100:
           tmp_key = list(data.keys())[0]
+          extra_info = f'({len(data)} ids as key)'
           data = {tmp_key: data[tmp_key]}
+        
+        tree_str += (prefix + f'└── DICT {extra_info}\n')
           
         for i, k in enumerate(list(data.keys())):
             if i < (len(data.keys())-1):

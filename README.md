@@ -22,3 +22,10 @@ For WSL under windows here are some ways to redirect to other drive
 或
 
 桌面双击Ub16图标
+
+## Useful toolkits
+
+1. Model information: torchinfo
+  ```
+  pip install torchinfo
+  ```

@@ -25,7 +25,7 @@ For WSL under windows here are some ways to redirect to other drive
 
 ## Useful toolkits
 
-1. Model information: torchinfo
+1. Model information: [torchinfo](https://github.com/TylerYep/torchinfo)
   ```
   pip install torchinfo
   ```

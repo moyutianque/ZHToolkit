@@ -169,3 +169,5 @@ ros2 run demo_nodes_py listener
 
 # will see once the talker output hello world, listener will catch hello world
 ```
+
+## However, no rqt found in this version, I may consider how to install it

@@ -49,6 +49,13 @@ pip install -U \
 pip install matplotlib
 
 ```
+## Get ros2 code
+```bash
+mkdir -p ~/ros2_galactic/src
+cd ~/ros2_galactic
+wget https://raw.githubusercontent.com/ros2/ros2/galactic/ros2.repos
+vcs import src < ros2.repos
+```
 
 ## Fix code problems for m1 chip
 

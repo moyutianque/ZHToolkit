@@ -130,6 +130,7 @@ externalproject_add(mimick-${mimick_version}
 ```
 
 ## Build Ros2
+```bash
 colcon build \
   --symlink-install \
   --merge-install \
@@ -142,3 +143,4 @@ colcon build \
     -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk \
     -DCMAKE_OSX_ARCHITECTURES="arm64" \
     -DCMAKE_PREFIX_PATH=$(brew --prefix):$(brew --prefix qt@5)
+```

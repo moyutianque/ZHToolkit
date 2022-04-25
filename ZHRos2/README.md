@@ -127,3 +127,17 @@ externalproject_add(mimick-${mimick_version}
  #   define OGRE_CPU OGRE_CPU_ARM
  #elif defined(__mips64) || defined(__mips64_)
 ```
+
+## Build Ros2
+colcon build \
+  --symlink-install \
+  --merge-install \
+  --event-handlers console_cohesion+ console_package_list+ \
+  --packages-skip-by-dep python_qt_binding \
+  --cmake-args \
+    --no-warn-unused-cli \
+    -DBUILD_TESTING=OFF \
+    -DINSTALL_EXAMPLES=ON \
+    -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk \
+    -DCMAKE_OSX_ARCHITECTURES="arm64" \
+    -DCMAKE_PREFIX_PATH=$(brew --prefix):$(brew --prefix qt@5)

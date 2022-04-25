@@ -147,3 +147,25 @@ colcon build \
     -DCMAKE_PREFIX_PATH=$(brew --prefix):$(brew --prefix qt@5)
 ```
 
+## Add bin to PATH
+```bash
+export PATH=$PATH:~/ros2_galactic/install/bin
+```
+
+## Test installation
+
+```bash
+source ~/ros2_galactic/install/setup.sh
+rviz2 # will see the rviz2 GUI
+```
+
+```bash
+# in one terminal
+source ~/ros2_galactic/install/setup.sh
+ros2 run demo_nodes_cpp talker 
+# in another terminal
+source ~/ros2_galactic/install/setup.sh
+ros2 run demo_nodes_py listener 
+
+# will see once the talker output hello world, listener will catch hello world
+```

@@ -144,3 +144,5 @@ colcon build \
     -DCMAKE_OSX_ARCHITECTURES="arm64" \
     -DCMAKE_PREFIX_PATH=$(brew --prefix):$(brew --prefix qt@5)
 ```
+
+# Still has error on qt version for rviz_rendering module

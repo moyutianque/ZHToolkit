@@ -17,6 +17,7 @@ pip install --upgrade pip && pip list
 # other required packages
 brew install asio tinyxml2
 brew install opencv
+brew install freeimage
 
 brew install console_bridge
 brew install openssl

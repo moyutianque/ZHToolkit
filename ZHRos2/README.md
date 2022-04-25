@@ -128,6 +128,8 @@ externalproject_add(mimick-${mimick_version}
  #   define OGRE_CPU OGRE_CPU_ARM
  #elif defined(__mips64) || defined(__mips64_)
 ```
+## IMPORTANT NOTE (remove other qt version)
+brew uninstall qt # try to uninstall other version of qt only keep qt@5
 
 ## Build Ros2
 ```bash
@@ -145,4 +147,3 @@ colcon build \
     -DCMAKE_PREFIX_PATH=$(brew --prefix):$(brew --prefix qt@5)
 ```
 
-# Still has error on qt version for rviz_rendering module

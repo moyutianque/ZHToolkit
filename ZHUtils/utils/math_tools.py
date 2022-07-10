@@ -67,11 +67,27 @@ def connect2D(point1, point2):
     """
     ends = [point1, point2]
     d0, d1 = np.abs(np.diff(ends, axis=0))[0]
-    if d0 > d1: 
-        return np.c_[np.linspace(ends[0, 0], ends[1, 0], d0+1, dtype=np.int32),
-                     np.round(np.linspace(ends[0, 1], ends[1, 1], d0+1))
-                     .astype(np.int32)]
-    else:
-        return np.c_[np.round(np.linspace(ends[0, 0], ends[1, 0], d1+1))
-                     .astype(np.int32),
-                     np.linspace(ends[0, 1], ends[1, 1], d1+1, dtype=np.int32)]
+    d_max = max(d0, d1)
+    return np.c_[
+        np.round(np.linspace(ends[0][0], ends[1][0], d_max+1)).astype(np.int32),
+        np.round(np.linspace(ends[0][1], ends[1][1], d_max+1)).astype(np.int32)
+    ]
+    
+def connect3D(point1, point2):
+    """ 
+    Connecting two points by sampling locations between them
+    Args:
+        point1: start point
+        point2: end point to be connected
+    """
+    ends = [point1, point2]
+    d0, d1, d2 = np.abs(np.diff(ends, axis=0))[0]
+    d_max = max(d0, d1, d2)
+
+    return np.c_[
+        np.round(np.linspace(ends[0][0], ends[1][0], d_max+1)).astype(np.int32),
+        np.round(np.linspace(ends[0][1], ends[1][1], d_max+1)).astype(np.int32),
+        np.round(np.linspace(ends[0][2], ends[1][2], d_max+1)).astype(np.int32)
+    ]
+
+   
